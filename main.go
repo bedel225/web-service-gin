@@ -21,15 +21,10 @@ var albums = []album{
 
 func main() {
 	router := gin.Default()
-	router.GET("/albums", getAlbum)
-	router.GET("/albums/:id", getAlbumByID)
+	router.GET("/albums/id/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
 
 	router.Run("localhost:8080")
-}
-
-func getAlbum(c *gin.Context) {
-	c.JSON(http.StatusOK, albums)
 }
 
 func postAlbums(c *gin.Context) {
