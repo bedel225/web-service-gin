@@ -1,10 +1,14 @@
 package main
 
 import (
+	"github/bedel225/db"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	db.InitDB()
+
 	router := gin.Default()
 
 	router.GET("/albums", getAlbums)
