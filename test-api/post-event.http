@@ -1,0 +1,9 @@
+POST  http://localhost:8080/albums
+Content-Type: application/json
+
+{
+    "id": "1",
+    "title": "hello",
+    "artist": "bedel",
+    "price": 58
+    }
