@@ -1,17 +1,19 @@
 package main
 
 import (
+	"github/bedel225/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func getAlbums(c *gin.Context) {
-	c.JSON(http.StatusOK, albums)
+	album := models.GetAllAlbum()
+	c.JSON(http.StatusOK, album)
 }
 
 func getAlbumByID(c *gin.Context) {
-	for _, item := range albums {
+	for _, item := range models.Albums {
 		if item.ID == c.Param("id") {
 			c.JSON(http.StatusOK, item)
 		}
@@ -19,7 +21,7 @@ func getAlbumByID(c *gin.Context) {
 }
 
 func postAlbums(c *gin.Context) {
-	var newAlbum album
+	var newAlbum models.Album
 
 	// Call BindJSON to bind the received JSON to
 	// newAlbum.
@@ -28,6 +30,6 @@ func postAlbums(c *gin.Context) {
 	}
 
 	// Add the new album to the slice.
-	albums = append(albums, newAlbum)
+	newAlbum.Save()
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
