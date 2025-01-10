@@ -1,5 +1,7 @@
 package models
 
+import "github/bedel225/db"
+
 type Album struct {
 	ID     string  `json:"id"`
 	Title  string  `json:"title"`
@@ -17,6 +19,20 @@ func (e Album) Save() {
 	Albums = append(Albums, e)
 }
 
-func GetAllAlbum() []Album {
-	return Albums
+func GetAllAlbum() ([]Album, error) {
+	query := "SELECT * FROM albums"
+	rows, err := db.DB.Query(query)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var albums []Album
+	for rows.Next() {
+		var album Album
+		rows.Scan(album.ID, album.Title, album.Artist, album.Price)
+		albums = append(albums, album)
+	}
+	return albums, nil
+
 }
