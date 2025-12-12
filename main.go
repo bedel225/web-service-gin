@@ -1,12 +1,14 @@
 package main
 
 import (
-	"net/http"
+	"github/bedel225/db"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	db.InitDB()
+
 	router := gin.Default()
 
 	router.GET("/albums", getAlbums)
@@ -14,20 +16,6 @@ func main() {
 	router.POST("/albums", postAlbums)
 
 	router.Run("localhost:8080")
-}
-
-func postAlbums(c *gin.Context) {
-	var newAlbum album
-
-	// Call BindJSON to bind the received JSON to
-	// newAlbum.
-	if err := c.BindJSON(&newAlbum); err != nil {
-		return
-	}
-
-	// Add the new album to the slice.
-	albums = append(albums, newAlbum)
-	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
 // getAlbumByID locates the album whose ID value matches the id
