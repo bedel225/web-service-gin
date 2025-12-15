@@ -15,7 +15,7 @@ func main() {
 	router.GET("/albums/id/:id", getAlbumByID)
 	router.POST("/albums", postAlbums)
 
-	router.Run("localhost:8080")
+	router.Run("localhost:8000")
 }
 
 // getAlbumByID locates the album whose ID value matches the id

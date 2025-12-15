@@ -8,8 +8,12 @@ import (
 )
 
 func getAlbums(c *gin.Context) {
-	album := models.GetAllAlbum()
-	c.JSON(http.StatusOK, album)
+	albums, err := models.GetAllAlbum()
+
+	if err != nil {
+		panic("nothing to show")
+	}
+	c.JSON(http.StatusOK, albums)
 }
 
 func getAlbumByID(c *gin.Context) {
