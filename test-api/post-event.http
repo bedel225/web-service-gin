@@ -2,8 +2,7 @@ POST  http://localhost:8000/albums
 Content-Type: application/json
 
 {
-    "id": "2",
     "title": "hello",
     "artist": "bedel",
-    "price": 58
+    "price": 55
     }
